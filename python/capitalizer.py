@@ -1,4 +1,5 @@
 word = input("Enter a word that you want to make ebic.")
+print(word[0])
 letter1 = word[:1]
 letter2 = word[1:2]
 letter3 = word[2:3]

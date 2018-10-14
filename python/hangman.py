@@ -1,156 +1,37 @@
 import random
 print("Hangman Python")
-word = random.choice(""" able
-acid
-angry
-automatic
-awake
-bad
-beautiful
-bent
-bitter
-black
-blue
-boiling
-bright
-broken
-brown
-certain
-cheap
-chemical
-chief
-clean
-clear
-cold
-common
-complete
-complex
-conscious
-cruel
-cut
-dark
-dead
-dear
-deep
-delicate
-dependent
-different
-dirty
-dry
-early
-elastic
-electric
-equal
-false
-fat
-feeble
-female
-fertile
-first
-fixed
-flat
-foolish
-free
-frequent
-full
-future
-general
-good
-gray
-great
-green
-hanging
-happy
-hard
-healthy
-high
-hollow
-ill
-important
-kind
-last
-late
-left
-like
-living
-long
-loose
-loud
-low
-male
-married
-material
-medical
-military
-fixed
-narrow
-natural
-necessary
-new
-normal
-old
-open
-opposite
-parallel
-past
-physical
-political
-poor
-possible
-present
-private
-probable
-public
-quick
-quiet
-ready
-red
-regular
-responsible
-right
-rough
-round
-sad
-safe
-same
-second
-secret
-separate
-serious
-sharp
-short
-shut
-simple
-slow
-small
-smooth
-soft
-solid
-special
-sticky
-stiff
-straight
-strange
-strong
-sudden
-sweet
-tall
-thick
-thin
-tight
-tired
-true
-violent
-waiting
-warm
-wet
-white
-wide
-wise
-wrong
-yellow
-young
-""".split())
 
-print(word)
-print(len(word))
+filename = "wordlist.txt"
+wordliststorage = open(filename, 'r')
+wordlist = wordliststorage.read()
+
+SecretWord = random.choice(wordlist.split())
+print(SecretWord)
+fails = 0
+loop = True
+CorrectLetters = ""
+
+
+while loop:
+    #print(CorrectLetters)
+    letter = input("Enter a letter: ")
+    if letter == "quit":
+        loop = False
+
+    if letter in SecretWord:
+        print("Correct!")
+        for letterindex in range(0, len(SecretWord)):
+            for correctlettersindex in range(0, len(CorrectLetters)):
+                if CorrectLetters[correctlettersindex] == SecretWord[letterindex]:
+                    print(CorrectLetters[correctlettersindex], end = "")
+            if letter in SecretWord[letterindex]:
+                print(letter, end = "")
+                CorrectLetters = CorrectLetters + letter
+            else:
+                print("_ ", end = "")
+            print(" ")
+    else:
+        print("Sorry, Try Again.")
+        fails + 1
+    if CorrectLetters in SecretWord:
+        print("You win!")
